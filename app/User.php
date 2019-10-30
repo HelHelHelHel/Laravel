@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token'
     ];
 
     /**
@@ -36,4 +36,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function collections()
+    {
+        return $this->hasMany('App\Collection');
+    }
+
+    public function favorite_movies()
+    {
+        return $this->belongsToMany('App\Movie', 'favorite_movies');
+    }
+
+    public function reviews() 
+    {
+        return $this->hasMany('App\Review');
+    }
 }
